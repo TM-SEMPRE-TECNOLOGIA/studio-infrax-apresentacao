@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Preview Fiel Facebook Ads — Studio Infra X</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+    body {
+      background-color: #18191a;
+      color: #e4e6eb;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 24px 16px 60px;
+    }
+
+    /* Barra Superior de Controle */
+    .top-control-bar {
+      width: 100%;
+      max-width: 580px;
+      background: #242526;
+      border: 1px solid #393a3b;
+      border-radius: 12px;
+      padding: 14px 18px;
+      margin-bottom: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    }
+    .top-control-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: #b0b3b8;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .top-control-title i {
+      color: #2e89ff;
+      font-size: 16px;
+    }
+    .creative-selector {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+    }
+    .creative-btn {
+      background: #3a3b3c;
+      color: #e4e6eb;
+      border: 1px solid #4e4f50;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+    }
+    .creative-btn.active, .creative-btn:hover {
+      background: #2e89ff;
+      color: #fff;
+      border-color: #2e89ff;
+    }
+
+    /* Card Fiel do Feed do Facebook */
+    .facebook-card {
+      width: 100%;
+      max-width: 550px;
+      background: #242526;
+      border: 1px solid #393a3b;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+    }
+
+    /* Header do Anúncio */
+    .fb-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px;
+    }
+    .fb-page-info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .fb-avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: #0f172a;
+      border: 1px solid #3b82f6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      color: #3b82f6;
+      font-size: 15px;
+      position: relative;
+    }
+    .fb-avatar-badge {
+      position: absolute;
+      bottom: -2px;
+      right: -2px;
+      background: #2e89ff;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 9px;
+      border: 2px solid #242526;
+    }
+    .fb-page-texts {
+      display: flex;
+      flex-direction: column;
+    }
+    .fb-page-name {
+      font-size: 15px;
+      font-weight: 700;
+      color: #e4e6eb;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      cursor: pointer;
+    }
+    .fb-sponsored-line {
+      font-size: 12px;
+      color: #b0b3b8;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-top: 1px;
+    }
+    .fb-sponsored-line i {
+      font-size: 11px;
+    }
+    .fb-options-btn {
+      color: #b0b3b8;
+      font-size: 16px;
+      cursor: pointer;
+      padding: 6px;
+    }
+
+    /* Texto da Copy */
+    .fb-copy-content {
+      padding: 4px 16px 12px;
+      font-size: 14.5px;
+      line-height: 1.45;
+      color: #e4e6eb;
+      white-space: pre-line;
+    }
+
+    /* Imagem do Criativo */
+    .fb-media-container {
+      width: 100%;
+      background: #000;
+      position: relative;
+      overflow: hidden;
+      border-top: 1px solid #333;
+      border-bottom: 1px solid #333;
+    }
+    .fb-media-img {
+      width: 100%;
+      height: auto;
+      max-height: 600px;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Faixa de Destino e CTA do Facebook Ads */
+    .fb-call-to-action-box {
+      background: #2f3031;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #393a3b;
+    }
+    .fb-cta-details {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      max-width: 65%;
+    }
+    .fb-cta-domain {
+      font-size: 11.5px;
+      color: #b0b3b8;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .fb-cta-headline {
+      font-size: 15px;
+      font-weight: 700;
+      color: #e4e6eb;
+      line-height: 1.25;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+    .fb-cta-button {
+      background: #4b4c4f;
+      color: #e4e6eb;
+      padding: 8px 14px;
+      border-radius: 6px;
+      font-size: 13.5px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      border: 1px solid #5a5b5e;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+    .fb-cta-button:hover {
+      background: #25d366;
+      color: #fff;
+      border-color: #25d366;
+    }
+    .fb-cta-button i {
+      color: #25d366;
+      font-size: 15px;
+      transition: color 0.2s ease;
+    }
+    .fb-cta-button:hover i {
+      color: #fff;
+    }
+
+    /* Estatísticas de Engajamento */
+    .fb-social-counts {
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 13px;
+      color: #b0b3b8;
+      border-bottom: 1px solid #393a3b;
+    }
+    .fb-reaction-icons {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .reaction-stack {
+      display: flex;
+      align-items: center;
+    }
+    .reaction-circle {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 9px;
+      color: #fff;
+      border: 2px solid #242526;
+      margin-right: -4px;
+    }
+    .react-like { background: #1877f2; }
+    .react-love { background: #f02849; }
+
+    /* Botões Sociais */
+    .fb-actions-row {
+      padding: 4px 8px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .fb-action-btn {
+      padding: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 13.5px;
+      font-weight: 600;
+      color: #b0b3b8;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.15s ease;
+    }
+    .fb-action-btn:hover {
+      background: #3a3b3c;
+      color: #e4e6eb;
+    }
+
+    /* Detalhes da Campanha */
+    .campaign-brief-card {
+      width: 100%;
+      max-width: 550px;
+      margin-top: 20px;
+      background: #242526;
+      border: 1px solid #393a3b;
+      border-radius: 10px;
+      padding: 16px;
+      font-size: 13px;
+      color: #b0b3b8;
+      line-height: 1.5;
+    }
+    .campaign-brief-card strong {
+      color: #f1f5f9;
+    }
+    .badge-pills {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+    .pill {
+      background: #18191a;
+      border: 1px solid #393a3b;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-family: 'JetBrains Mono', monospace;
+      color: #60a5fa;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Barra de Seleção de Criativo -->
+  <div class="top-control-bar">
+    <div class="top-control-title">
+      <i class="fa-brands fa-facebook"></i>
+      Preview Fiel Facebook Ads Feed — Studio Infra X
+    </div>
+    <div class="creative-selector">
+      <button class="creative-btn active" onclick="setFbCreative(1)">Anúncio 01 (Comparativo)</button>
+      <button class="creative-btn" onclick="setFbCreative(2)">Anúncio 02 (Pacote Chave na Mão)</button>
+      <button class="creative-btn" onclick="setFbCreative(3)">Anúncio 03 (Ensaio Corporativo)</button>
+      <button class="creative-btn" onclick="setFbCreative(4)">Anúncio 04 (Convite Café VIP)</button>
+      <button class="creative-btn" onclick="setFbCreative(5)">Carrossel 01 (Luz de Cinema)</button>
+      <button class="creative-btn" onclick="setFbCreative(6)">Carrossel 02 (1 Tarde de Estúdio)</button>
+      <button class="creative-btn" onclick="setFbCreative(7)">Carrossel 03 (4 Erros de Imagem)</button>
+    </div>
+  </div>
+
+  <!-- Card do Feed do Facebook -->
+  <div class="facebook-card">
+    <!-- Header -->
+    <div class="fb-header">
+      <div class="fb-page-info">
+        <div class="fb-avatar">
+          IX
+          <div class="fb-avatar-badge">
+            <i class="fa-solid fa-check"></i>
+          </div>
+        </div>
+        <div class="fb-page-texts">
+          <div class="fb-page-name">
+            Studio Infra X
+            <i class="fa-solid fa-circle-check" style="color: #2e89ff; font-size: 12px;"></i>
+          </div>
+          <div class="fb-sponsored-line">
+            Patrocinado · <i class="fa-solid fa-earth-americas"></i>
+          </div>
+        </div>
+      </div>
+      <div class="fb-options-btn">
+        <i class="fa-solid fa-ellipsis"></i>
+      </div>
+    </div>
+
+    <!-- Texto do Anúncio (Copy) -->
+    <div class="fb-copy-content" id="fbCopy">Seu conhecimento vale R$ 2.000. Por que sua imagem parece feita no improviso?
+
+Você já reparou como o cliente julga o valor da sua mentoria ou do seu serviço nos primeiros 10 segundos de vídeo?
+
+Se a iluminação é amarelada, a câmera está tremendo e o fundo é improvisado, a percepção de valor cai instantaneamente.
+
+No Studio Infra X, você não precisa comprar equipamentos caros nem passar noites editando. Você chega, toma um café executivo e nós cuidamos de toda a iluminação Godox de alta velocidade, direção de poses e captação de cinema em ciclorama branco.
+
+Toque no botão abaixo e fale com a nossa equipe no WhatsApp para agendar sua visita.</div>
+
+    <!-- Imagem Real do Criativo -->
+    <div class="fb-media-container">
+      <img id="fbMediaImg" class="fb-media-img" src="./criativos-infrax-gerados/criativo_01_infrax_1789704123095.jpg" alt="Anúncio Studio Infra X">
+    </div>
+
+    <!-- Call to Action Bar (Headline + Botão WhatsApp) -->
+    <div class="fb-call-to-action-box">
+      <div class="fb-cta-details">
+        <span class="fb-cta-domain" id="fbDomain">WHATSAPP.COM / STUDIOINFRAX</span>
+        <span class="fb-cta-headline" id="fbHeadline">Grave Seu Conteúdo com Padrão Netflix | Estúdio e Equipe Inclusos</span>
+      </div>
+      <div class="fb-cta-button" onclick="alert('Inicia conversa direta com a Samira Closer no WhatsApp!')">
+        <i class="fa-brands fa-whatsapp"></i>
+        <span id="fbBtnText">Enviar mensagem</span>
+      </div>
+    </div>
+
+    <!-- Contadores Sociais -->
+    <div class="fb-social-counts">
+      <div class="fb-reaction-icons">
+        <div class="reaction-stack">
+          <div class="reaction-circle react-like"><i class="fa-solid fa-thumbs-up"></i></div>
+          <div class="reaction-circle react-love"><i class="fa-solid fa-heart"></i></div>
+        </div>
+        <span id="fbReactionCount" style="margin-left: 6px;">284</span>
+      </div>
+      <div style="display: flex; gap: 10px;">
+        <span id="fbCommentCount">42 comentários</span>
+        <span id="fbShareCount">18 compartilhamentos</span>
+      </div>
+    </div>
+
+    <!-- Botões de Ação do Usuário -->
+    <div class="fb-actions-row">
+      <div class="fb-action-btn">
+        <i class="fa-regular fa-thumbs-up"></i> Curtir
+      </div>
+      <div class="fb-action-btn">
+        <i class="fa-regular fa-message"></i> Comentar
+      </div>
+      <div class="fb-action-btn">
+        <i class="fa-solid fa-share"></i> Compartilhar
+      </div>
+    </div>
+  </div>
+
+  <!-- Bloco de Especificação Técnica do Anúncio -->
+  <div class="campaign-brief-card">
+    <div id="fbMetaTitle" style="font-size: 14px; font-weight: 700; color: #f8fafc; margin-bottom: 6px;">
+      Anúncio 01 — "A Anatomia da Imagem de Alto Ticket"
+    </div>
+    <div id="fbMetaDesc">
+      <strong>Posicionamento no Gerenciador:</strong> Meta Ads Feed Desktop/Mobile & Reels.<br>
+      <strong>Gatilho Principal:</strong> Ancoragem de Autoridade e Alívio de Esforço.<br>
+      <strong>Destino:</strong> Conversa Direta no WhatsApp com a Closer Samira.
+    </div>
+    <div class="badge-pills">
+      <span class="pill">CBO / Campanha Mensagens</span>
+      <span class="pill">Meta Ads Manager</span>
+      <span class="pill">Goiânia + Raio 20km</span>
+      <span class="pill">WhatsApp Business API</span>
+    </div>
+  </div>
+
+  <script>
+    const fbCreatives = {
+      1: {
+        img: "./criativos-infrax-gerados/criativo_01_infrax_1789704123095.jpg",
+        title: 'Anúncio 01 — "A Anatomia da Imagem de Alto Ticket"',
+        headline: "Grave Seu Conteúdo com Padrão Netflix | Estúdio e Equipe Inclusos",
+        domain: "WHATSAPP.COM / STUDIOINFRAX",
+        reactions: "284",
+        comments: "42 comentários",
+        shares: "18 compartilhamentos",
+        desc: "<strong>Posicionamento no Gerenciador:</strong> Meta Ads Feed Desktop/Mobile & Reels.<br><strong>Gatilho:</strong> Autoridade e Alívio de Esforço.<br><strong>Destino:</strong> WhatsApp Comercial.",
+        copy: `Seu conhecimento vale R$ 2.000. Por que sua imagem parece feita no improviso?
+
+Você já reparou como o cliente julga o valor da sua mentoria ou do seu serviço nos primeiros 10 segundos de vídeo?
+
+Se a iluminação é amarelada, a câmera está tremendo e o fundo é improvisado, a percepção de valor cai instantaneamente.
+
+No Studio Infra X, você não precisa comprar equipamentos caros nem passar noites editando. Você chega, toma um café executivo e nós cuidamos de toda a iluminação Godox de alta velocidade, direção de poses e captação de cinema em ciclorama branco.
+
+Toque no botão abaixo e fale com a nossa equipe no WhatsApp para agendar sua visita.`
+      },
+      2: {
+        img: "./criativos-infrax-gerados/criativo_02_infrax_1789704159473.jpg",
+        title: 'Anúncio 02 — "Grid Oferta: Pacote Produção Chave na Mão"',
+        headline: "Pacote Produção Chave na Mão | Estúdio + 30 Fotos + 10 Vídeos",
+        domain: "STUDIOINFRAX.COM.BR / PACOTE",
+        reactions: "419",
+        comments: "63 comentários",
+        shares: "29 compartilhamentos",
+        desc: "<strong>Posicionamento no Gerenciador:</strong> Feed e Explorar.<br><strong>Gatilho:</strong> Oferta Irresistível Direta e Praticidade.<br><strong>Destino:</strong> WhatsApp Comercial.",
+        copy: `Resolva 3 meses de marketing visual da sua empresa em uma única tarde de estúdio.
+
+Se você é médico, advogado, consultor ou empresário e não tem tempo para ficar produzindo conteúdo toda semana:
+
+O Pacote Chave na Mão do Studio Infra X foi desenhado para você:
+✅ 3 Horas de estúdio com ciclorama infinito e iluminação pronta
+✅ Sessão de 30 fotos corporativas tratadas para seu site, perfil e anúncios
+✅ 10 vídeos gravados com teleprompter e editados pela nossa equipe
+✅ Equipe técnica completa inclusa no set
+
+Você só precisa vir. Nós cuidamos de toda a produção.
+
+Clique no botão abaixo e consulte as datas disponíveis na nossa agenda deste mês!`
+      },
+      3: {
+        img: "./criativos-infrax-gerados/criativo_03_infrax_1789704201661.jpg",
+        title: 'Anúncio 03 — "Retrato Corporativo de Autoridade em Fundo Infinito"',
+        headline: "Ensaios Corporativos de Alto Padrão | Fundo Infinito e Luz de Cinema",
+        domain: "WHATSAPP.COM / ENSAIOS",
+        reactions: "356",
+        comments: "38 comentários",
+        shares: "14 compartilhamentos",
+        desc: "<strong>Posicionamento no Gerenciador:</strong> Feed de Notícias & Instagram.<br><strong>Gatilho:</strong> Status Social e Autoridade Imediata.<br><strong>Destino:</strong> WhatsApp Comercial.",
+        copy: `A primeira impressão do seu cliente é a sua foto de perfil. O que ela está comunicando?
+
+No mercado de alto padrão, uma foto amadora com luz ruim custa clientes todos os dias.
+
+O Studio Infra X realiza ensaios corporativos com iluminação de cinema Godox de alta velocidade e direção de poses que transmitem liderança, sobriedade e respeito imediato.
+
+Pronto para transformar a sua imagem?
+
+Toque no botão e garanta sua sessão exclusiva com horário marcado.`
+      },
+      4: {
+        img: "./criativos-infrax-gerados/criativo_04_infrax_1789704242655.jpg",
+        title: 'Anúncio 04 — "Convite: Café Executivo & Teste de Iluminação"',
+        headline: "Venha Tomar um Café Conosco | Agende Uma Visita ao Estúdio",
+        domain: "STUDIOINFRAX.COM.BR / VISITA",
+        reactions: "220",
+        comments: "27 comentários",
+        shares: "9 compartilhamentos",
+        desc: "<strong>Posicionamento no Gerenciador:</strong> Meta Ads Local (Raio 15km).<br><strong>Gatilho:</strong> Reciprocidade e Degustação Gratuita.<br><strong>Destino:</strong> WhatsApp Comercial.",
+        copy: `Venha tomar um café conosco e experimentar na prática o poder da iluminação de estúdio.
+
+Quer ver como o seu projeto ficaria gravado no ciclorama infinito do Studio Infra X?
+
+Estamos abrindo convites exclusivos para empresários e especialistas virem tomar um café com a nossa equipe de direção e fazer um teste de luz e enquadramento sem nenhum compromisso.
+
+Clique no botão abaixo e reserve o seu horário nesta semana!`
+      },
+      5: {
+        img: "./criativos-infrax-gerados/carrossel_01_capa_infrax_1789704288013.jpg",
+        title: 'Carrossel 01 — "Antes do Play: A Geometria da Luz" (Capa)',
+        headline: "Por Que Alguns Vídeos Parecem Netflix? Veja os Bastidores",
+        domain: "WHATSAPP.COM / STUDIOINFRAX",
+        reactions: "532",
+        comments: "74 comentários",
+        shares: "41 compartilhamentos",
+        desc: "<strong>Posicionamento no Gerenciador:</strong> Carrossel do Feed.<br><strong>Gatilho:</strong> Curiosidade e Quebra de Objeção Técnica.<br><strong>Destino:</strong> WhatsApp Comercial.",
+        copy: `Por que alguns vídeos e fotos parecem Netflix e outros parecem amadores?
+
+Não é sobre comprar uma câmera cara. É sobre o que acontece ANTES do play.
+
+Neste carrossel, mostramos os bastidores da iluminação de estúdio do Studio Infra X:
+1. O ângulo de 45° do Octabox difuso
+2. O tripé girafa que suspende a luz sem poluir o chão
+3. O ciclorama infinito e a profundidade de campo
+
+Arraste para o lado e confira os bastidores completos ➔`
+      },
+      6: {
+        img: "./criativos-infrax-gerados/carrossel_02_capa_infrax_1789704334755.jpg",
+        title: 'Carrossel 02 — "Como Resolver 30 Dias em 1 Tarde" (Capa)',
+        headline: "Como Gravar 30 Dias de Conteúdo em 1 Tarde | Método Chave na Mão",
+        domain: "STUDIOINFRAX.COM.BR / METODO",
+        reactions: "488",
+        comments: "55 comentários",
+        shares: "36 compartilhamentos",
+        desc: "<strong>Posicionamento no Gerenciador:</strong> Carrossel do Feed.<br><strong>Gatilho:</strong> Economia de Tempo e Produtividade.<br><strong>Destino:</strong> WhatsApp Comercial.",
+        copy: `Como resolver 30 dias de fotos e vídeos em apenas uma tarde de estúdio.
+
+A esteira prática de produção do Studio Infra X para empresários que não têm tempo a perder.
+
+Passo a passo:
+1. Sessão de fotos de autoridade
+2. Gravação dinâmica com teleprompter
+3. Equipe técnica cuidando de 100% do set
+4. Material editado e pronto para tráfego
+
+Arraste para o lado para ver o método completo ➔`
+      },
+      7: {
+        img: "./criativos-infrax-gerados/carrossel_03_capa_infrax_1789704386407.jpg",
+        title: 'Anúncio 07 — "O Checklist da Imagem de Alto Ticket"',
+        headline: "Se Você Cobra Caro, Sua Imagem Não Pode Ter Esses 4 Erros",
+        domain: "WHATSAPP.COM / STUDIOINFRAX",
+        reactions: "604",
+        comments: "81 comentários",
+        shares: "53 compartilhamentos",
+        desc: "<strong>Posicionamento no Gerenciador:</strong> Feed e Reels.<br><strong>Gatilho:</strong> Dor de Amadorismo e Status.<br><strong>Destino:</strong> WhatsApp Comercial.",
+        copy: `Se você cobra caro pelo seu trabalho, sua imagem não pode ter esses 4 erros.
+
+A percepção de autoridade do seu cliente é visual.
+
+Descubra os 4 erros de iluminação e enquadramento que desvalorizam mentorias e serviços de alto ticket — e como o Studio Infra X resolve cada um deles.
+
+Arraste para o lado e faça o seu checklist ➔`
+      }
+    };
+
+    function setFbCreative(id) {
+      document.querySelectorAll(".creative-btn").forEach((b, i) => {
+        b.classList.toggle("active", i === (id - 1));
+      });
+
+      const c = fbCreatives[id];
+      const img = document.getElementById("fbMediaImg");
+      img.style.opacity = 0;
+      setTimeout(() => {
+        img.src = c.img;
+        img.style.opacity = 1;
+      }, 150);
+
+      document.getElementById("fbCopy").innerText = c.copy;
+      document.getElementById("fbHeadline").innerText = c.headline;
+      document.getElementById("fbDomain").innerText = c.domain;
+      document.getElementById("fbReactionCount").innerText = c.reactions;
+      document.getElementById("fbCommentCount").innerText = c.comments;
+      document.getElementById("fbShareCount").innerText = c.shares;
+      document.getElementById("fbMetaTitle").innerText = c.title;
+      document.getElementById("fbMetaDesc").innerHTML = c.desc;
+    }
+  </script>
+</body>
+</html>

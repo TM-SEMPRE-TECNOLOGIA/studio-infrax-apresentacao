@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Preview Fiel Instagram — Studio Infra X</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+    body {
+      background-color: #0c1017;
+      color: #f0f2f5;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 24px 16px 60px;
+    }
+
+    /* Top Banner de Controle */
+    .top-control-bar {
+      width: 100%;
+      max-width: 520px;
+      background: #161c26;
+      border: 1px solid #273142;
+      border-radius: 12px;
+      padding: 14px 18px;
+      margin-bottom: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+    .top-control-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .top-control-title i {
+      color: #e1306c;
+      font-size: 16px;
+    }
+    .creative-selector {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+    }
+    .creative-btn {
+      background: #202938;
+      color: #cbd5e1;
+      border: 1px solid #334155;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+    }
+    .creative-btn.active, .creative-btn:hover {
+      background: #e1306c;
+      color: #fff;
+      border-color: #e1306c;
+    }
+
+    /* Card Instagram Simulado */
+    .instagram-card {
+      width: 100%;
+      max-width: 470px;
+      background: #000000;
+      border: 1px solid #262626;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+    }
+
+    /* Header do Post */
+    .ig-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px;
+    }
+    .ig-user-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .ig-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+      padding: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .ig-avatar-inner {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: #111;
+      border: 2px solid #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      color: #fff;
+      font-size: 14px;
+    }
+    .ig-user-text {
+      display: flex;
+      flex-direction: column;
+    }
+    .ig-username {
+      font-size: 14px;
+      font-weight: 600;
+      color: #f5f5f5;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      cursor: pointer;
+    }
+    .ig-verified {
+      color: #3897f0;
+      font-size: 12px;
+    }
+    .ig-location {
+      font-size: 12px;
+      color: #a8a8a8;
+    }
+    .ig-more-btn {
+      color: #f5f5f5;
+      font-size: 16px;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    /* Container da Imagem */
+    .ig-media-container {
+      width: 100%;
+      position: relative;
+      background: #050505;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .ig-media-img {
+      width: 100%;
+      height: auto;
+      max-height: 580px;
+      object-fit: cover;
+      display: block;
+      transition: opacity 0.3s ease;
+    }
+
+    /* Tag de Anúncio / Patrocinado */
+    .ig-sponsored-badge {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: rgba(0,0,0,0.7);
+      backdrop-filter: blur(8px);
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 600;
+      color: #fff;
+      letter-spacing: 0.4px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    /* Barra de Ações */
+    .ig-actions-bar {
+      padding: 12px 16px 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .ig-action-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .ig-action-icon {
+      font-size: 22px;
+      color: #f5f5f5;
+      cursor: pointer;
+      transition: transform 0.15s ease, color 0.15s ease;
+    }
+    .ig-action-icon:hover {
+      transform: scale(1.1);
+    }
+    .ig-action-icon.liked {
+      color: #ff3040;
+    }
+
+    /* Botão CTA do Anúncio */
+    .ig-cta-banner {
+      background: #1877f2;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+    .ig-cta-banner:hover {
+      background: #1464cc;
+    }
+
+    /* Curtidas */
+    .ig-likes {
+      padding: 0 16px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #f5f5f5;
+      margin-bottom: 8px;
+    }
+
+    /* Legenda e Copy */
+    .ig-caption-box {
+      padding: 0 16px;
+      font-size: 14px;
+      line-height: 1.45;
+      color: #f5f5f5;
+    }
+    .ig-caption-user {
+      font-weight: 600;
+      margin-right: 6px;
+    }
+    .ig-caption-text {
+      white-space: pre-line;
+      color: #e2e8f0;
+    }
+    .ig-more-toggle {
+      color: #a8a8a8;
+      cursor: pointer;
+      font-weight: 500;
+      margin-left: 4px;
+    }
+    .ig-tags {
+      margin-top: 8px;
+      color: #70b5f9;
+      font-size: 13px;
+    }
+
+    /* Data e Rodapé */
+    .ig-post-date {
+      padding: 8px 16px 14px;
+      font-size: 11px;
+      color: #737373;
+      text-transform: uppercase;
+      letter-spacing: 0.2px;
+    }
+
+    /* Informações do Criativo Ativo */
+    .creative-meta-card {
+      width: 100%;
+      max-width: 470px;
+      margin-top: 20px;
+      background: #161c26;
+      border: 1px solid #273142;
+      border-radius: 10px;
+      padding: 16px;
+      font-size: 13px;
+      color: #94a3b8;
+      line-height: 1.5;
+    }
+    .creative-meta-card strong {
+      color: #f1f5f9;
+    }
+    .badge-pills {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+    .pill {
+      background: #202938;
+      border: 1px solid #334155;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-family: 'JetBrains Mono', monospace;
+      color: #38bdf8;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Barra de Controle de Pré-Visualização -->
+  <div class="top-control-bar">
+    <div class="top-control-title">
+      <i class="fa-brands fa-instagram"></i>
+      Preview Oficial Instagram Feed — Studio Infra X
+    </div>
+    <div class="creative-selector">
+      <button class="creative-btn active" onclick="setCreative(1)">Criativo 01 (Comparativo)</button>
+      <button class="creative-btn" onclick="setCreative(2)">Criativo 02 (Oferta Chave na Mão)</button>
+      <button class="creative-btn" onclick="setCreative(3)">Criativo 03 (Ensaio de Autoridade)</button>
+      <button class="creative-btn" onclick="setCreative(4)">Criativo 04 (Convite VIP Café)</button>
+      <button class="creative-btn" onclick="setCreative(5)">Carrossel 01 (Geometria da Luz)</button>
+      <button class="creative-btn" onclick="setCreative(6)">Carrossel 02 (1 Mês em 1 Tarde)</button>
+      <button class="creative-btn" onclick="setCreative(7)">Carrossel 03 (4 Erros Visuais)</button>
+    </div>
+  </div>
+
+  <!-- Post Fiel do Instagram -->
+  <div class="instagram-card">
+    <!-- Header -->
+    <div class="ig-header">
+      <div class="ig-user-info">
+        <div class="ig-avatar">
+          <div class="ig-avatar-inner">IX</div>
+        </div>
+        <div class="ig-user-text">
+          <div class="ig-username">
+            studioinfrax
+            <i class="fa-solid fa-circle-check ig-verified"></i>
+          </div>
+          <div class="ig-location">Studio Infra X • Goiânia</div>
+        </div>
+      </div>
+      <div class="ig-more-btn">
+        <i class="fa-solid fa-ellipsis"></i>
+      </div>
+    </div>
+
+    <!-- Mídia / Criativo Real Gerado -->
+    <div class="ig-media-container">
+      <div class="ig-sponsored-badge">
+        <i class="fa-solid fa-bolt"></i> Patrocinado
+      </div>
+      <img id="postImage" class="ig-media-img" src="./criativos-infrax-gerados/criativo_01_infrax_1789704123095.jpg" alt="Criativo Studio Infra X">
+    </div>
+
+    <!-- CTA Bar do Anúncio Meta -->
+    <div class="ig-cta-banner" onclick="alert('Redireciona para o WhatsApp de atendimento do Studio Infra X!')">
+      <span id="ctaText">Enviar mensagem pelo WhatsApp</span>
+      <i class="fa-solid fa-chevron-right"></i>
+    </div>
+
+    <!-- Ações do Post -->
+    <div class="ig-actions-bar">
+      <div class="ig-action-left">
+        <i id="likeBtn" class="fa-regular fa-heart ig-action-icon" onclick="toggleLike()"></i>
+        <i class="fa-regular fa-comment ig-action-icon"></i>
+        <i class="fa-regular fa-paper-plane ig-action-icon"></i>
+      </div>
+      <i class="fa-regular fa-bookmark ig-action-icon"></i>
+    </div>
+
+    <!-- Curtidas -->
+    <div class="ig-likes" id="likesCounter">438 curtidas</div>
+
+    <!-- Legenda e Copy Tratada Alex Vargas -->
+    <div class="ig-caption-box">
+      <span class="ig-caption-user">studioinfrax</span>
+      <span id="captionText" class="ig-caption-text">Seu conhecimento vale R$ 2.000. Por que sua imagem parece feita no improviso?
+
+Você já reparou como o cliente julga o valor da sua mentoria ou do seu serviço nos primeiros 10 segundos de vídeo?
+
+Se a iluminação é amarelada, a câmera está tremendo e o fundo é improvisado, a percepção de valor cai instantaneamente.
+
+No Studio Infra X, você não precisa comprar equipamentos caros nem passar noites editando. Você chega, toma um café executivo e nós cuidamos de toda a iluminação Godox de alta velocidade, direção de poses e captação de cinema em ciclorama branco.
+
+Toque no botão abaixo e fale com a nossa equipe no WhatsApp para agendar sua visita.</span>
+      <div class="ig-tags" id="tagsText">#StudioInfraX #FotografiaDeAutoridade #PosicionamentoVisual #EnsaiosCorporativos #MarketingDeAutoridade</div>
+    </div>
+
+    <!-- Data -->
+    <div class="ig-post-date">HÁ 2 HORAS • PATROCINADO META ADS</div>
+  </div>
+
+  <!-- Metadados Técnicos do Criativo Selecionado -->
+  <div class="creative-meta-card">
+    <div id="metaTitle" style="font-size: 14px; font-weight: 700; color: #f8fafc; margin-bottom: 6px;">
+      Criativo 01 — "A Anatomia da Imagem de Alto Ticket"
+    </div>
+    <div id="metaDesc">
+      <strong>Pilar da Campanha:</strong> Comparativo de Autoridade e Quebra de Objeção.<br>
+      <strong>Formato no Meta:</strong> Imagem Única (Feed 4:5 e Stories 9:16).<br>
+      <strong>Objetivo do Anúncio:</strong> Atração de mentores, professores e empresários para fechamento de produções completas.
+    </div>
+    <div class="badge-pills">
+      <span class="pill">CBO / Tráfego WhatsApp</span>
+      <span class="pill">Iluminação Godox Pro</span>
+      <span class="pill">Ciclorama Real Infra X</span>
+      <span class="pill">Copy Alex Vargas</span>
+    </div>
+  </div>
+
+  <script>
+    const creatives = {
+      1: {
+        img: "./criativos-infrax-gerados/criativo_01_infrax_1789704123095.jpg",
+        title: 'Criativo 01 — "A Anatomia da Imagem de Alto Ticket"',
+        cta: "Enviar mensagem pelo WhatsApp",
+        likes: "438 curtidas",
+        desc: "<strong>Pilar da Campanha:</strong> Comparativo de Autoridade.<br><strong>Formato:</strong> Feed 4:5 e Stories 9:16.<br><strong>Objetivo:</strong> Atração de mentores e empresários para fechamento de produções.",
+        caption: `Seu conhecimento vale R$ 2.000. Por que sua imagem parece feita no improviso?
+
+Você já reparou como o cliente julga o valor da sua mentoria ou do seu serviço nos primeiros 10 segundos de vídeo?
+
+Se a iluminação é amarelada, a câmera está tremendo e o fundo é improvisado, a percepção de valor cai instantaneamente.
+
+No Studio Infra X, você não precisa comprar equipamentos caros nem passar noites editando. Você chega, toma um café executivo e nós cuidamos de toda a iluminação Godox de alta velocidade, direção de poses e captação de cinema em ciclorama branco.
+
+Toque no botão abaixo e fale com a nossa equipe no WhatsApp para agendar sua visita.`
+      },
+      2: {
+        img: "./criativos-infrax-gerados/criativo_02_infrax_1789704159473.jpg",
+        title: 'Criativo 02 — "Grid Oferta: Pacote Produção Chave na Mão"',
+        cta: "Falar com a Equipe no WhatsApp",
+        likes: "612 curtidas",
+        desc: "<strong>Pilar da Campanha:</strong> Oferta Irresistível Direta.<br><strong>Formato:</strong> Feed 4:5 e 1:1.<br><strong>Objetivo:</strong> Fechamento do pacote completo (Estúdio + 30 Fotos + 10 Vídeos).",
+        caption: `Resolva 3 meses de marketing visual da sua empresa em uma única tarde de estúdio.
+
+Se você é médico, advogado, consultor ou empresário e não tem tempo para ficar produzindo conteúdo toda semana:
+
+O Pacote Chave na Mão do Studio Infra X foi desenhado para você:
+✅ 3 Horas de estúdio com ciclorama infinito e iluminação pronta
+✅ Sessão de 30 fotos corporativas tratadas para seu site, perfil e anúncios
+✅ 10 vídeos gravados com teleprompter e editados pela nossa equipe
+✅ Equipe técnica completa inclusa no set
+
+Você só precisa vir. Nós cuidamos de toda a produção.
+
+Clique no botão abaixo e consulte as datas disponíveis na nossa agenda deste mês!`
+      },
+      3: {
+        img: "./criativos-infrax-gerados/criativo_03_infrax_1789704201661.jpg",
+        title: 'Criativo 03 — "Retrato Corporativo de Autoridade em Fundo Infinito"',
+        cta: "Agendar Sessão no WhatsApp",
+        likes: "524 curtidas",
+        desc: "<strong>Pilar da Campanha:</strong> Posicionamento de Imagem Executiva.<br><strong>Formato:</strong> Feed 4:5 e Stories.<br><strong>Objetivo:</strong> Ensaios de autoridade para profissionais liberais e CEOs.",
+        caption: `A primeira impressão do seu cliente é a sua foto de perfil. O que ela está comunicando?
+
+No mercado de alto padrão, uma foto amadora com luz ruim custa clientes todos os dias.
+
+O Studio Infra X realiza ensaios corporativos com iluminação de cinema Godox de alta velocidade e direção de poses que transmitem liderança, sobriedade e respeito imediato.
+
+Pronto para transformar a sua imagem?
+
+Toque no botão e garanta sua sessão exclusiva com horário marcado.`
+      },
+      4: {
+        img: "./criativos-infrax-gerados/criativo_04_infrax_1789704242655.jpg",
+        title: 'Criativo 04 — "Convite: Café Executivo & Teste de Iluminação"',
+        cta: "Agendar Visita Gratuita no WhatsApp",
+        likes: "389 curtidas",
+        desc: "<strong>Pilar da Campanha:</strong> Geração de Visitas Presenciais sem Atrito.<br><strong>Formato:</strong> Feed 4:5.<br><strong>Objetivo:</strong> Trazer o cliente até o estúdio para fechar pessoalmente.",
+        caption: `Venha tomar um café conosco e experimentar na prática o poder da iluminação de estúdio.
+
+Quer ver como o seu projeto ficaria gravado no ciclorama infinito do Studio Infra X?
+
+Estamos abrindo convites exclusivos para empresários e especialistas virem tomar um café com a nossa equipe de direção e fazer um teste de luz e enquadramento sem nenhum compromisso.
+
+Clique no botão abaixo e reserve o seu horário nesta semana!`
+      },
+      5: {
+        img: "./criativos-infrax-gerados/carrossel_01_capa_infrax_1789704288013.jpg",
+        title: 'Carrossel 01 — "Antes do Play: A Geometria da Luz" (Capa)',
+        cta: "Ver Carrossel Completo",
+        likes: "892 curtidas",
+        desc: "<strong>Pilar da Campanha:</strong> Carrossel Educativo e Quebra de Objeção Técnica.<br><strong>Formato:</strong> Carrossel 1:1 (7 Slides).",
+        caption: `Por que alguns vídeos e fotos parecem Netflix e outros parecem amadores?
+
+Não é sobre comprar uma câmera cara. É sobre o que acontece ANTES do play.
+
+Neste carrossel, mostramos os bastidores da iluminação de estúdio do Studio Infra X:
+1. O ângulo de 45° do Octabox difuso
+2. O tripé girafa que suspende a luz sem poluir o chão
+3. O ciclorama infinito e a profundidade de campo
+
+Arraste para o lado e confira os bastidores completos ➔`
+      },
+      6: {
+        img: "./criativos-infrax-gerados/carrossel_02_capa_infrax_1789704334755.jpg",
+        title: 'Carrossel 02 — "Como Resolver 30 Dias em 1 Tarde" (Capa)',
+        cta: "Conhecer o Método",
+        likes: "743 curtidas",
+        desc: "<strong>Pilar da Campanha:</strong> Produtividade e Economia de Tempo.<br><strong>Formato:</strong> Carrossel 1:1 (6 Slides).",
+        caption: `Como resolver 30 dias de fotos e vídeos em apenas uma tarde de estúdio.
+
+A esteira prática de produção do Studio Infra X para empresários que não têm tempo a perder.
+
+Passo a passo:
+1. Sessão de fotos de autoridade
+2. Gravação dinâmica com teleprompter
+3. Equipe técnica cuidando de 100% do set
+4. Material editado e pronto para tráfego
+
+Arraste para o lado para ver o método completo ➔`
+      },
+      7: {
+        img: "./criativos-infrax-gerados/carrossel_03_capa_infrax_1789704386407.jpg",
+        title: 'Carrossel 03 — "O Checklist da Imagem de Alto Ticket" (Capa)',
+        cta: "Descobrir os Erros",
+        likes: "915 curtidas",
+        desc: "<strong>Pilar da Campanha:</strong> Auditoria Visual e Gatilho de Status.<br><strong>Formato:</strong> Carrossel 1:1 (6 Slides).",
+        caption: `Se você cobra caro pelo seu trabalho, sua imagem não pode ter esses 4 erros.
+
+A percepção de autoridade do seu cliente é visual.
+
+Descubra os 4 erros de iluminação e enquadramento que desvalorizam mentorias e serviços de alto ticket — e como o Studio Infra X resolve cada um deles.
+
+Arraste para o lado e faça o seu checklist ➔`
+      }
+    };
+
+    let isLiked = false;
+
+    function toggleLike() {
+      const btn = document.getElementById("likeBtn");
+      const counter = document.getElementById("likesCounter");
+      isLiked = !isLiked;
+      if (isLiked) {
+        btn.classList.add("liked");
+        btn.classList.remove("fa-regular");
+        btn.classList.add("fa-solid");
+        counter.innerText = "439 curtidas";
+      } else {
+        btn.classList.remove("liked");
+        btn.classList.add("fa-regular");
+        btn.classList.remove("fa-solid");
+        counter.innerText = "438 curtidas";
+      }
+    }
+
+    function setCreative(id) {
+      // Atualizar botões
+      document.querySelectorAll(".creative-btn").forEach((b, i) => {
+        b.classList.toggle("active", i === (id - 1));
+      });
+
+      const c = creatives[id];
+      const img = document.getElementById("postImage");
+      img.style.opacity = 0;
+      setTimeout(() => {
+        img.src = c.img;
+        img.style.opacity = 1;
+      }, 150);
+
+      document.getElementById("ctaText").innerText = c.cta;
+      document.getElementById("likesCounter").innerText = c.likes;
+      document.getElementById("captionText").innerText = c.caption;
+      document.getElementById("metaTitle").innerText = c.title;
+      document.getElementById("metaDesc").innerHTML = c.desc;
+    }
+  </script>
+</body>
+</html>
