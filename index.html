@@ -23,7 +23,7 @@
       --gold-primary: #D4AF37;
       --gold-light: #F5E6A3;
       --gold-dark: #8E731F;
-      --gold-glow: rgba(212, 175, 55, 0.15);
+      --gold-glow: rgba(212, 175, 55, 0.2);
 
       --text-primary: #F8FAFC;
       --text-secondary: #94A3B8;
@@ -60,12 +60,12 @@
       padding-bottom: 90px;
     }
 
-    /* Top Corporate Sticky Header */
+    /* Top Corporate Header */
     .top-corporate-bar {
       position: sticky;
       top: 0;
       z-index: 1000;
-      background: rgba(11, 15, 23, 0.92);
+      background: rgba(11, 15, 23, 0.95);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--border-subtle);
@@ -149,12 +149,12 @@
       padding: 20px 16px 0;
     }
 
-    /* Hero Banner Executivo */
+    /* Hero Executivo */
     .exec-hero {
-      background: linear-gradient(180deg, rgba(19, 25, 38, 0.9) 0%, rgba(15, 23, 42, 0.6) 100%);
+      background: linear-gradient(180deg, rgba(19, 25, 38, 0.95) 0%, rgba(15, 23, 42, 0.7) 100%);
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius-lg);
-      padding: 28px 24px;
+      padding: 24px 20px;
       margin-bottom: 24px;
       position: relative;
       overflow: hidden;
@@ -183,9 +183,9 @@
     }
     .hero-title {
       font-family: var(--font-serif);
-      font-size: clamp(26px, 4.5vw, 38px);
+      font-size: clamp(24px, 4vw, 36px);
       font-weight: 600;
-      line-height: 1.15;
+      line-height: 1.2;
       color: #fff;
       margin-bottom: 12px;
     }
@@ -194,11 +194,11 @@
       color: var(--gold-light);
     }
     .hero-desc {
-      font-size: 15px;
+      font-size: 14px;
       color: var(--text-secondary);
       max-width: 780px;
       line-height: 1.6;
-      margin-bottom: 20px;
+      margin-bottom: 16px;
     }
     .hero-partner-tag {
       display: inline-flex;
@@ -213,7 +213,68 @@
       font-family: var(--font-mono);
     }
 
-    /* Navegação por Abas (Tabs) */
+    /* Vitrine Visual do Criativo Vencedor Logo no Topo */
+    .winner-spotlight-box {
+      background: linear-gradient(135deg, #161D2B 0%, #101622 100%);
+      border: 1px solid var(--gold-dark);
+      border-radius: var(--radius-lg);
+      padding: 18px;
+      margin-bottom: 24px;
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+    @media (max-width: 680px) {
+      .winner-spotlight-box {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+    .winner-thumb {
+      width: 140px;
+      min-width: 140px;
+      aspect-ratio: 4 / 5;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 2px solid var(--gold-primary);
+      box-shadow: 0 8px 24px rgba(212, 175, 55, 0.25);
+      background: #000;
+    }
+    .winner-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .winner-info h3 {
+      font-family: var(--font-serif);
+      font-size: 20px;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+    .winner-info p {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      margin-bottom: 12px;
+    }
+    .winner-cta-btn {
+      background: var(--gold-primary);
+      color: #0A0E17;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 8px 16px;
+      border-radius: 6px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      border: none;
+    }
+
+    /* Navegação por Abas */
     .tab-navigation {
       display: flex;
       gap: 8px;
@@ -248,38 +309,34 @@
       white-space: nowrap;
       transition: all 0.2s ease;
     }
-    .tab-btn i {
-      font-size: 14px;
-    }
     .tab-btn.active {
       background: #1E293B;
       color: #fff;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
       border: 1px solid var(--border-accent);
     }
     .tab-btn.active.gold-tab {
-      border-color: rgba(212, 175, 55, 0.5);
+      border-color: var(--gold-primary);
       color: var(--gold-light);
     }
 
     /* Conteúdos das Abas */
     .tab-content {
       display: none;
-      animation: fadeIn 0.3s ease;
+      animation: fadeIn 0.25s ease;
     }
     .tab-content.active {
       display: block;
     }
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(6px); }
+      from { opacity: 0; transform: translateY(4px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Strip de Métricas (Hero Metrics Strip) */
+    /* Metrics Strip */
     .metrics-strip {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-      gap: 14px;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
       margin-bottom: 24px;
     }
     .metric-card {
@@ -290,7 +347,6 @@
       display: flex;
       flex-direction: column;
       gap: 4px;
-      position: relative;
     }
     .metric-card.highlight {
       border-color: var(--gold-dark);
@@ -301,11 +357,10 @@
       font-size: 11px;
       text-transform: uppercase;
       color: var(--text-muted);
-      letter-spacing: 0.5px;
     }
     .metric-val {
       font-family: var(--font-mono);
-      font-size: 24px;
+      font-size: 22px;
       font-weight: 700;
       color: #fff;
     }
@@ -317,7 +372,7 @@
       color: var(--text-secondary);
     }
 
-    /* Seção de Cenários Interativos de Verba */
+    /* Simulador de Cenários de Verba */
     .scenario-picker-box {
       background: var(--bg-card);
       border: 1px solid var(--border-subtle);
@@ -325,24 +380,11 @@
       padding: 22px;
       margin-bottom: 28px;
     }
-    .scenario-header {
-      margin-bottom: 16px;
-    }
-    .scenario-title {
-      font-family: var(--font-serif);
-      font-size: 22px;
-      color: #fff;
-      margin-bottom: 4px;
-    }
-    .scenario-subtitle {
-      font-size: 13px;
-      color: var(--text-secondary);
-    }
     .scenario-buttons {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 10px;
-      margin-bottom: 20px;
+      margin: 16px 0 20px;
     }
     @media (max-width: 680px) {
       .scenario-buttons {
@@ -357,10 +399,6 @@
       cursor: pointer;
       text-align: left;
       transition: all 0.2s ease;
-    }
-    .scenario-btn:hover {
-      border-color: var(--border-accent);
-      background: #1e283d;
     }
     .scenario-btn.active {
       background: linear-gradient(135deg, #1e2a40, #131c2c);
@@ -390,7 +428,6 @@
       margin-top: 2px;
     }
 
-    /* Detalhe do Cenário Ativo */
     .scenario-detail-grid {
       display: grid;
       grid-template-columns: 1.2fr 1fr;
@@ -409,7 +446,6 @@
       font-family: var(--font-mono);
       font-size: 12px;
       text-transform: uppercase;
-      letter-spacing: 0.5px;
       color: var(--gold-primary);
       margin-bottom: 12px;
       display: flex;
@@ -438,6 +474,7 @@
       font-weight: 600;
       color: #fff;
     }
+
     .break-even-banner {
       background: rgba(37, 211, 102, 0.08);
       border: 1px solid rgba(37, 211, 102, 0.25);
@@ -466,64 +503,49 @@
       line-height: 1.4;
     }
 
-    /* Cards de Conjuntos de Anúncios (AdSets) */
-    .adsets-grid {
+    /* Galeria Rápida de Criativos no Plano de Verba */
+    .quick-creatives-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 16px;
-      margin-bottom: 30px;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 12px;
+      margin: 20px 0 30px;
     }
-    .adset-card {
+    .quick-creative-card {
       background: var(--bg-card);
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius-md);
-      padding: 18px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 0.2s ease;
     }
-    .adset-badge {
-      font-family: var(--font-mono);
+    .quick-creative-card:hover {
+      border-color: var(--gold-primary);
+      transform: translateY(-2px);
+    }
+    .quick-card-img {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      background: #000;
+      overflow: hidden;
+    }
+    .quick-card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .quick-card-title {
+      padding: 8px 10px;
       font-size: 11px;
-      font-weight: 600;
-      color: var(--gold-light);
-      background: rgba(212, 175, 55, 0.12);
-      border: 1px solid rgba(212, 175, 55, 0.25);
-      padding: 4px 8px;
-      border-radius: 4px;
-      display: inline-block;
-      margin-bottom: 10px;
-      align-self: flex-start;
-    }
-    .adset-title {
-      font-size: 16px;
       font-weight: 700;
       color: #fff;
-      margin-bottom: 8px;
-    }
-    .adset-specs {
-      font-size: 13px;
-      color: var(--text-secondary);
-      line-height: 1.5;
-      margin-bottom: 14px;
-    }
-    .adset-tags {
-      display: flex;
-      gap: 6px;
-      flex-wrap: wrap;
-      margin-top: auto;
-    }
-    .adset-tag {
-      background: #1A2232;
-      border: 1px solid #28344A;
       font-family: var(--font-mono);
-      font-size: 11px;
-      color: #93c5fd;
-      padding: 3px 8px;
-      border-radius: 4px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
-    /* Layout dos Previews Embutidos (Instagram e Facebook) */
+    /* Previews Hub */
     .preview-hub-layout {
       display: flex;
       flex-direction: column;
@@ -550,10 +572,6 @@
       white-space: nowrap;
       transition: all 0.2s;
     }
-    .preview-chip:hover {
-      color: #fff;
-      border-color: var(--border-accent);
-    }
     .preview-chip.active {
       background: var(--gold-dark);
       border-color: var(--gold-primary);
@@ -570,7 +588,7 @@
       font-weight: 700;
     }
 
-    /* Mockup Frame Instagram */
+    /* Mockup Instagram */
     .ig-mockup {
       width: 100%;
       max-width: 440px;
@@ -683,7 +701,7 @@
       margin-right: 6px;
     }
 
-    /* Mockup Frame Facebook */
+    /* Mockup Facebook */
     .fb-mockup {
       width: 100%;
       max-width: 480px;
@@ -784,7 +802,7 @@
       flex-shrink: 0;
     }
 
-    /* Aba 4: As 5 Novas Direções Visuais (Estilo Luis Miguel) */
+    /* Aba 4: 5 Direções Visuais */
     .directions-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -799,7 +817,6 @@
       display: flex;
       flex-direction: column;
       gap: 12px;
-      position: relative;
       transition: all 0.2s ease;
     }
     .direction-card:hover {
@@ -837,7 +854,7 @@
       font-style: italic;
     }
 
-    /* Footer Institucional */
+    /* Footer */
     .site-footer {
       border-top: 1px solid var(--border-subtle);
       margin-top: 40px;
@@ -846,39 +863,6 @@
       font-size: 12px;
       color: var(--text-muted);
       font-family: var(--font-mono);
-    }
-
-    /* Barra Flutuante Mobile */
-    .mobile-float-bar {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: rgba(11, 15, 23, 0.95);
-      border-top: 1px solid var(--border-subtle);
-      padding: 10px 16px;
-      display: flex;
-      justify-content: space-around;
-      z-index: 1000;
-    }
-    .mobile-float-btn {
-      background: transparent;
-      border: none;
-      color: var(--text-secondary);
-      font-size: 11px;
-      font-family: var(--font-sans);
-      font-weight: 600;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 4px;
-      cursor: pointer;
-    }
-    .mobile-float-btn i {
-      font-size: 16px;
-    }
-    .mobile-float-btn.active {
-      color: var(--gold-primary);
     }
   </style>
 </head>
@@ -925,6 +909,27 @@
       </div>
     </section>
 
+    <!-- Vitrine em Destaque: O Estilo Favorito do Luis Miguel -->
+    <div class="winner-spotlight-box">
+      <div class="winner-thumb">
+        <img 
+          id="spotlightImg" 
+          src="https://raw.githubusercontent.com/TM-SEMPRE-TECNOLOGIA/studio-infrax-apresentacao/master/criativos-infrax-gerados/criativo_estilo_luis_miguel.jpg" 
+          alt="Estilo Aprovado Luis Miguel"
+          onerror="this.onerror=null; this.src='criativos-infrax-gerados/criativo_estilo_luis_miguel.jpg';"
+        >
+      </div>
+      <div class="winner-info">
+        <h3><i class="fa-solid fa-crown" style="color: var(--gold-primary); margin-right: 6px;"></i>Estilo Vencedor Selecionado pelo Luis Miguel</h3>
+        <p>
+          Formato de <strong>Cartaz Editorial Publicitário</strong>: headline de dor integrada, pill de autoridade, split comparativo de alto contraste (amador vs. cinema) e botão dourado flutuante sobre a imagem.
+        </p>
+        <button class="winner-cta-btn" onclick="switchTab('tab-instagram')">
+          <i class="fa-brands fa-instagram"></i> Ver Mockup no Feed do Instagram
+        </button>
+      </div>
+    </div>
+
     <!-- Navegação por Abas -->
     <nav class="tab-navigation">
       <button class="tab-btn active gold-tab" onclick="switchTab('tab-verba')">
@@ -941,7 +946,7 @@
       </button>
       <button class="tab-btn" onclick="switchTab('tab-direcoes')">
         <i class="fa-solid fa-wand-magic-sparkles"></i>
-        <span>4. Novas Direções (Estilo Luís)</span>
+        <span>4. 5 Novas Direções</span>
       </button>
     </nav>
 
@@ -975,8 +980,12 @@
       <!-- Simulador Interativo dos 3 Cenários -->
       <div class="scenario-picker-box">
         <div class="scenario-header">
-          <h2 class="scenario-title">Escolha o Cenário de Investimento para Iniciar</h2>
-          <p class="scenario-subtitle">Clique nos botões abaixo para simular as métricas de alcance, leads no WhatsApp e faturamento:</p>
+          <h2 style="font-family: var(--font-serif); font-size: 22px; color: #fff; margin-bottom: 4px;">
+            Escolha o Cenário de Investimento para Iniciar
+          </h2>
+          <p style="font-size: 13px; color: var(--text-secondary);">
+            Clique nos botões abaixo para simular as métricas de alcance, leads no WhatsApp e faturamento:
+          </p>
         </div>
 
         <div class="scenario-buttons">
@@ -1060,58 +1069,51 @@
         </div>
       </div>
 
-      <!-- Estrutura dos Conjuntos de Anúncios -->
-      <h3 style="font-family: var(--font-serif); font-size: 20px; color: #fff; margin-bottom: 14px;">
-        Os 3 Conjuntos de Anúncios Configurados
+      <!-- Galeria dos Criativos Produzidos para a Campanha -->
+      <h3 style="font-family: var(--font-serif); font-size: 20px; color: #fff; margin-bottom: 8px;">
+        Criativos Produzidos para Esta Campanha
       </h3>
-      <div class="adsets-grid">
-        <div class="adset-card">
-          <div>
-            <span class="adset-badge">CONJUNTO 01</span>
-            <div class="adset-title">Negócios & Clínicas Locais</div>
-            <p class="adset-specs">
-              <strong>Geotargeting:</strong> Goiânia + Raio de 15km a 20km.<br>
-              <strong>Idade:</strong> 25 a 55 anos.<br>
-              <strong>Interesses:</strong> Médicos, Dentistas, Advogados, Imobiliárias de luxo, Pequenos empresários locais.
-            </p>
+      <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 16px;">
+        Clique em qualquer criativo abaixo para vê-lo aplicado no mockup do Instagram ou Facebook:
+      </p>
+
+      <div class="quick-creatives-grid">
+        <div class="quick-creative-card" onclick="openCreativeOnMockup(0)">
+          <div class="quick-card-img">
+            <img src="https://raw.githubusercontent.com/TM-SEMPRE-TECNOLOGIA/studio-infrax-apresentacao/master/criativos-infrax-gerados/criativo_estilo_luis_miguel.jpg" alt="Criativo Luís" onerror="this.src='criativos-infrax-gerados/criativo_estilo_luis_miguel.jpg'">
           </div>
-          <div class="adset-tags">
-            <span class="adset-tag">Criativo 02 (Chave na Mão)</span>
-            <span class="adset-tag">Criativo 04 (Café VIP)</span>
-          </div>
+          <div class="quick-card-title">★ Estilo Luís Miguel</div>
         </div>
 
-        <div class="adset-card">
-          <div>
-            <span class="adset-badge">CONJUNTO 02</span>
-            <div class="adset-title">Mentores & Produtores Digitais</div>
-            <p class="adset-specs">
-              <strong>Geotargeting:</strong> Goiânia + Raio de 25km.<br>
-              <strong>Idade:</strong> 24 a 50 anos.<br>
-              <strong>Interesses:</strong> Cursos online, Hotmart, Kiwify, Marketing de autoridade, Produção de vídeo, Iluminação de estúdio.
-            </p>
+        <div class="quick-creative-card" onclick="openCreativeOnMockup(1)">
+          <div class="quick-card-img">
+            <img src="https://raw.githubusercontent.com/TM-SEMPRE-TECNOLOGIA/studio-infrax-apresentacao/master/criativos-infrax-gerados/criativo_01_infrax_1789704123095.jpg" alt="Criativo 01" onerror="this.src='criativos-infrax-gerados/criativo_01_infrax_1789704123095.jpg'">
           </div>
-          <div class="adset-tags">
-            <span class="adset-tag">Criativo Estilo Luís (Comparativo)</span>
-            <span class="adset-tag">Criativo 03 (Ensaio Ciclorama)</span>
-          </div>
+          <div class="quick-card-title">Criativo 01 • Cinema</div>
         </div>
 
-        <div class="adset-card">
-          <div>
-            <span class="adset-badge">CONJUNTO 03 (FASE 2)</span>
-            <div class="adset-title">Remarketing Envolvimento 60D</div>
-            <p class="adset-specs">
-              <strong>Ativação:</strong> A partir do 7º dia.<br>
-              <strong>Público:</strong> Pessoas que engajaram no Instagram/Facebook nos últimos 60 dias mas não enviaram mensagem.
-            </p>
+        <div class="quick-creative-card" onclick="openCreativeOnMockup(2)">
+          <div class="quick-card-img">
+            <img src="https://raw.githubusercontent.com/TM-SEMPRE-TECNOLOGIA/studio-infrax-apresentacao/master/criativos-infrax-gerados/criativo_02_infrax_1789704159473.jpg" alt="Criativo 02" onerror="this.src='criativos-infrax-gerados/criativo_02_infrax_1789704159473.jpg'">
           </div>
-          <div class="adset-tags">
-            <span class="adset-tag">Oferta Condição Especial</span>
-            <span class="adset-tag">Convite Presencial</span>
+          <div class="quick-card-title">Criativo 02 • Oferta</div>
+        </div>
+
+        <div class="quick-creative-card" onclick="openCreativeOnMockup(3)">
+          <div class="quick-card-img">
+            <img src="https://raw.githubusercontent.com/TM-SEMPRE-TECNOLOGIA/studio-infrax-apresentacao/master/criativos-infrax-gerados/criativo_03_infrax_1789704201661.jpg" alt="Criativo 03" onerror="this.src='criativos-infrax-gerados/criativo_03_infrax_1789704201661.jpg'">
           </div>
+          <div class="quick-card-title">Criativo 03 • Ciclorama</div>
+        </div>
+
+        <div class="quick-creative-card" onclick="openCreativeOnMockup(4)">
+          <div class="quick-card-img">
+            <img src="https://raw.githubusercontent.com/TM-SEMPRE-TECNOLOGIA/studio-infrax-apresentacao/master/criativos-infrax-gerados/criativo_04_infrax_1789704242655.jpg" alt="Criativo 04" onerror="this.src='criativos-infrax-gerados/criativo_04_infrax_1789704242655.jpg'">
+          </div>
+          <div class="quick-card-title">Criativo 04 • Café VIP</div>
         </div>
       </div>
+
     </div>
 
     <!-- ==================== ABA 2: FEED INSTAGRAM ==================== -->
@@ -1149,7 +1151,12 @@
 
           <div class="ig-photo-box">
             <div class="ig-sponsored-tag"><i class="fa-solid fa-bolt"></i> Patrocinado</div>
-            <img id="igMainImg" src="./criativos-infrax-gerados/criativo_estilo_luis_miguel.jpg" alt="Criativo Studio Infra X">
+            <img 
+              id="igMainImg" 
+              src="https://raw.githubusercontent.com/TM-SEMPRE-TECNOLOGIA/studio-infrax-apresentacao/master/criativos-infrax-gerados/criativo_estilo_luis_miguel.jpg" 
+              alt="Criativo Studio Infra X"
+              onerror="this.onerror=null; this.src='criativos-infrax-gerados/criativo_estilo_luis_miguel.jpg';"
+            >
           </div>
 
           <div class="ig-cta-bar" onclick="alert('Redireciona diretamente para o WhatsApp do Studio Infra X!')">
@@ -1224,7 +1231,12 @@ No Studio Infra X, você tem acesso a estrutura completa de estúdio com ilumina
 Clique no botão abaixo e fale conosco diretamente no WhatsApp para agendar uma visita e tomar um café com a direção.</div>
 
           <div class="fb-media-box">
-            <img id="fbMainImg" src="./criativos-infrax-gerados/criativo_estilo_luis_miguel.jpg" alt="Anúncio Studio Infra X">
+            <img 
+              id="fbMainImg" 
+              src="https://raw.githubusercontent.com/TM-SEMPRE-TECNOLOGIA/studio-infrax-apresentacao/master/criativos-infrax-gerados/criativo_estilo_luis_miguel.jpg" 
+              alt="Anúncio Studio Infra X"
+              onerror="this.onerror=null; this.src='criativos-infrax-gerados/criativo_estilo_luis_miguel.jpg';"
+            >
           </div>
 
           <div class="fb-bottom-cta">
@@ -1238,7 +1250,7 @@ Clique no botão abaixo e fale conosco diretamente no WhatsApp para agendar uma 
             </button>
           </div>
 
-          <!-- Barra de Interações do Facebook -->
+          <!-- Barra de Interações -->
           <div style="padding: 10px 14px; display: flex; justify-content: space-between; border-top: 1px solid #3a3b3c; font-size: 12px; color: #b0b3b8;">
             <div style="display: flex; align-items: center; gap: 4px;">
               <i class="fa-solid fa-thumbs-up" style="color: #2e89ff;"></i>
@@ -1441,30 +1453,30 @@ Clique no botão abaixo e fale conosco diretamente no WhatsApp para agendar uma 
       document.getElementById('scen-det-breakeven').textContent = data.breakeven;
     }
 
-    // Criativos para os Previews
+    // Criativos para os Previews com URLs Absolutas e Locais
     const adData = [
       {
-        img: "./criativos-infrax-gerados/criativo_estilo_luis_miguel.jpg",
+        img: "https://raw.githubusercontent.com/TM-SEMPRE-TECNOLOGIA/studio-infrax-apresentacao/master/criativos-infrax-gerados/criativo_estilo_luis_miguel.jpg",
         caption: `Seu conhecimento vale R$ 2.000. Por que seu vídeo parece feito no improviso?\n\nProfissionais de alto valor não gravam em quarto escuro com luz estourada no rosto.\n\nNo Studio Infra X, você tem acesso a estrutura completa de estúdio com iluminação Godox de cinema, ciclorama infinito e equipe pronta para direcionar cada tomada.\n\nToque no botão e fale com nossa equipe no WhatsApp para reservar sua data.`,
         headline: "Grave Seu Curso em 1 Dia com Equipe Inclusa"
       },
       {
-        img: "./criativos-infrax-gerados/criativo_01_infrax_1789704123095.jpg",
+        img: "https://raw.githubusercontent.com/TM-SEMPRE-TECNOLOGIA/studio-infrax-apresentacao/master/criativos-infrax-gerados/criativo_01_infrax_1789704123095.jpg",
         caption: `A anatomia da autoridade visual: por que seu cliente julga o valor da sua consultoria nos primeiros 10 segundos?\n\nSe o enquadramento é torto e a luz é de lâmpada comum, a percepção de alto valor despenca.\n\nVenha gravar no Studio Infra X com ciclorama branco e iluminação Godox de alta velocidade.`,
         headline: "Eleve o Padrão Visual do Seu Conteúdo"
       },
       {
-        img: "./criativos-infrax-gerados/criativo_02_infrax_1789704159473.jpg",
+        img: "https://raw.githubusercontent.com/TM-SEMPRE-TECNOLOGIA/studio-infrax-apresentacao/master/criativos-infrax-gerados/criativo_02_infrax_1789704159473.jpg",
         caption: `Resolva 3 meses de marketing da sua empresa em uma única tarde de estúdio.\n\nPacote Chave na Mão Infra X:\n✅ 3 Horas de estúdio com ciclorama infinito\n✅ 30 Fotos corporativas tratadas\n✅ 10 Vídeos com teleprompter gravados e editados\n✅ Equipe inclusa no set`,
         headline: "Pacote Chave na Mão: 30 Fotos + 10 Vídeos"
       },
       {
-        img: "./criativos-infrax-gerados/criativo_03_infrax_1789704201661.jpg",
+        img: "https://raw.githubusercontent.com/TM-SEMPRE-TECNOLOGIA/studio-infrax-apresentacao/master/criativos-infrax-gerados/criativo_03_infrax_1789704201661.jpg",
         caption: `Sua foto de perfil transmite autoridade executiva ou foi tirada no improviso?\n\nO Studio Infra X realiza ensaios corporativos com direção de poses, iluminação de contorno e fundo infinito em alvenaria.\n\nAgende seu ensaio no WhatsApp.`,
         headline: "Ensaio Corporativo no Fundo Infinito"
       },
       {
-        img: "./criativos-infrax-gerados/criativo_04_infrax_1789704242655.jpg",
+        img: "https://raw.githubusercontent.com/TM-SEMPRE-TECNOLOGIA/studio-infrax-apresentacao/master/criativos-infrax-gerados/criativo_04_infrax_1789704242655.jpg",
         caption: `Convite Executivo: venha tomar um café com a direção do Studio Infra X e conhecer o seu próximo set de gravação.\n\nVisita técnica cortesia para médicos, advogados, consultores e produtores de conteúdo de Goiânia.`,
         headline: "Agende uma Visita Técnica Cortesia"
       }
@@ -1475,7 +1487,8 @@ Clique no botão abaixo e fale conosco diretamente no WhatsApp para agendar uma 
         c.classList.toggle('active', i === idx);
       });
       const ad = adData[idx] || adData[0];
-      document.getElementById('igMainImg').src = ad.img;
+      const img = document.getElementById('igMainImg');
+      img.src = ad.img;
       document.getElementById('igCaptionText').innerText = ad.caption;
     }
 
@@ -1484,9 +1497,15 @@ Clique no botão abaixo e fale conosco diretamente no WhatsApp para agendar uma 
         c.classList.toggle('active', i === idx);
       });
       const ad = adData[idx] || adData[0];
-      document.getElementById('fbMainImg').src = ad.img;
+      const img = document.getElementById('fbMainImg');
+      img.src = ad.img;
       document.getElementById('fbCopyText').innerText = ad.caption;
       document.getElementById('fbHeadlineText').innerText = ad.headline;
+    }
+
+    function openCreativeOnMockup(idx) {
+      switchTab('tab-instagram');
+      changeIgAd(idx);
     }
 
     let isLiked = false;
