@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Infra X Studios IA — Planejamento Comercial & Criativos Oficiais</title>
+  <title>Infra X Studios IA — Planejamento de Tráfego & Criativos Oficiais</title>
   
   <!-- Tipografia Editorial Canônica -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -121,7 +121,7 @@
       padding: 20px 16px 0;
     }
 
-    /* Hero Executivo */
+    /* Hero */
     .exec-hero {
       background: linear-gradient(180deg, rgba(19, 25, 38, 0.95) 0%, rgba(15, 23, 42, 0.7) 100%);
       border: 1px solid var(--border-subtle);
@@ -178,13 +178,13 @@
       gap: 6px;
     }
 
-    /* Vitrine dos 4 Criativos Oficiais no Topo */
+    /* Vitrine dos 4 Criativos com Público-Alvo Explícito */
     .creatives-showcase-section {
       margin-bottom: 28px;
     }
     .creatives-grid-cards {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 16px;
       margin-top: 14px;
     }
@@ -220,10 +220,10 @@
       display: block;
     }
     .poster-meta {
-      padding: 12px;
+      padding: 14px;
       display: flex;
       flex-direction: column;
-      gap: 4px;
+      gap: 6px;
     }
     .poster-tag {
       font-family: var(--font-mono);
@@ -233,14 +233,28 @@
       font-weight: 700;
     }
     .poster-name {
-      font-size: 13px;
+      font-size: 14px;
       font-weight: 700;
       color: #fff;
+      line-height: 1.3;
     }
-    .poster-action {
+    .poster-target-badge {
+      background: #0E131F;
+      border: 1px solid #23314A;
+      border-radius: 4px;
+      padding: 6px 8px;
       font-size: 11px;
-      color: var(--text-muted);
+      color: #93c5fd;
+      line-height: 1.4;
       margin-top: 4px;
+    }
+    .poster-target-badge strong {
+      color: var(--gold-light);
+      display: block;
+      margin-bottom: 2px;
+      font-size: 10px;
+      text-transform: uppercase;
+      font-family: var(--font-mono);
     }
 
     /* Navegação por Abas */
@@ -299,7 +313,7 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Simulador de Verba Pé no Chão (R$ 10 a R$ 12 / dia) */
+    /* Métricas */
     .metrics-strip {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -469,47 +483,50 @@
       line-height: 1.4;
     }
 
-    /* Box do Acordo de Parceria Comercial */
-    .partnership-agreement-card {
-      background: linear-gradient(135deg, #182236 0%, #101828 100%);
-      border: 1px solid var(--gold-dark);
-      border-radius: var(--radius-lg);
-      padding: 22px;
-      margin-top: 28px;
-    }
-    .partner-step-row {
+    /* Públicos-Alvo Detalhados */
+    .audiences-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 16px;
-      margin-top: 14px;
+      margin-top: 16px;
     }
-    .partner-step-box {
-      background: #0D131F;
+    .audience-card {
+      background: var(--bg-card);
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius-md);
-      padding: 16px;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
     }
-    .step-badge {
+    .audience-badge {
       font-family: var(--font-mono);
       font-size: 11px;
       color: var(--gold-primary);
+      text-transform: uppercase;
       font-weight: 700;
-      margin-bottom: 6px;
-      display: block;
     }
-    .step-title {
-      font-size: 15px;
+    .audience-title {
+      font-size: 16px;
       font-weight: 700;
       color: #fff;
-      margin-bottom: 8px;
     }
-    .step-desc {
-      font-size: 12px;
+    .audience-desc {
+      font-size: 13px;
       color: var(--text-secondary);
       line-height: 1.5;
     }
+    .audience-niches-pill {
+      background: #0E131E;
+      border: 1px solid #28344A;
+      border-radius: 4px;
+      padding: 6px 10px;
+      font-size: 12px;
+      color: #60a5fa;
+      margin-top: auto;
+    }
 
-    /* Mockups Frames */
+    /* Mockup */
     .preview-hub-layout {
       display: flex;
       flex-direction: column;
@@ -705,7 +722,7 @@
 </head>
 <body>
 
-  <!-- Top Header -->
+  <!-- Header -->
   <header class="top-corporate-bar">
     <div class="brand-group">
       <div class="brand-logo-pill">
@@ -714,7 +731,7 @@
       </div>
       <div>
         <div class="brand-name">Infra X Studios IA</div>
-        <div class="brand-sub">📍 Park Lozandes — Goiânia</div>
+        <div class="brand-sub">📍 Park Lozandes — Goiânia/GO</div>
       </div>
     </div>
     <a href="https://wa.me/5562982451303?text=Ol%C3%A1%2C%20quero%20agendar%20minhas%203%20horas%20no%20Studio%20Infra%20X!" target="_blank" class="btn-wa-header">
@@ -725,36 +742,34 @@
 
   <div class="app-container">
 
-    <!-- Hero Executivo com Alinhamento Real -->
+    <!-- Hero Executivo do Estúdio -->
     <section class="exec-hero">
       <div class="hero-eyebrow">
         <i class="fa-solid fa-bolt"></i>
-        <span>Estratégia Oficial de Lançamento • Infra X Studios IA & TM</span>
+        <span>Infra X Studios IA • Campanha de Produção de Conteúdo</span>
       </div>
       <h1 class="hero-title">
         3 Horas de Estúdio. <em>Conteúdo Profissional de Verdade.</em>
       </h1>
       <p class="hero-desc">
-        Planejamento com verba pé no chão (R$ 10 a R$ 12/dia), tráfego direto para atendimento no WhatsApp com Mídia Kit e fechamento presencial no estúdio no Park Lozandes.
+        Planejamento com verba pé no chão (R$ 10 a R$ 12/dia no botão turbinar), tráfego direto para atendimento no WhatsApp com Mídia Kit e fechamento presencial no estúdio no Park Lozandes.
       </p>
       <div class="hero-tags">
         <span class="hero-tag"><i class="fa-solid fa-tag"></i> R$ 590,90 à vista (ou 10x R$ 79,90)</span>
         <span class="hero-tag"><i class="fa-solid fa-location-dot"></i> Park Lozandes • Goiânia/GO</span>
-        <span class="hero-tag"><i class="fa-solid fa-handshake"></i> Parceria Mikael TM & Luis Miguel</span>
+        <span class="hero-tag"><i class="fa-solid fa-video"></i> 10 Vídeos + 20 Fotos Entregues Prontos</span>
       </div>
     </section>
 
-    <!-- Vitrine dos 4 Novos Cartazes no Estilo Vencedor do Luis -->
+    <!-- Vitrine dos 4 Criativos Oficiais no Topo com Público-Alvo Explícito -->
     <section class="creatives-showcase-section">
-      <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 6px;">
-        <div>
-          <h2 style="font-family: var(--font-serif); font-size: 22px; color: #fff;">
-            Criativos Oficiais Produzidos (Estilo Cartaz do Luis)
-          </h2>
-          <p style="font-size: 13px; color: var(--text-secondary);">
-            Todas as peças já trazem o preço de R$ 590,90, 10x de R$ 79,90, Park Lozandes e telefone oficial. Clique para testar no mockup:
-          </p>
-        </div>
+      <div style="margin-bottom: 8px;">
+        <h2 style="font-family: var(--font-serif); font-size: 22px; color: #fff;">
+          Criativos Oficiais Produzidos & Públicos-Alvo
+        </h2>
+        <p style="font-size: 13px; color: var(--text-secondary);">
+          Cada peça foi desenhada para um público específico com preço oficial (R$ 590,90), Park Lozandes e telefone oficial. Clique no cartaz para abrir o mockup:
+        </p>
       </div>
 
       <div class="creatives-grid-cards">
@@ -767,7 +782,10 @@
           <div class="poster-meta">
             <span class="poster-tag">// SPLIT AUTORIDADE</span>
             <div class="poster-name">3 Horas Para Conteúdo de Verdade</div>
-            <div class="poster-action">10 Vídeos + 20 Fotos • R$ 590,90</div>
+            <div class="poster-target-badge">
+              <strong>🎯 Público-Alvo:</strong>
+              Médicos, Dentistas, Advogados, Consultores e Mentores que querem autoridade de alto valor.
+            </div>
           </div>
         </div>
 
@@ -779,7 +797,10 @@
           <div class="poster-meta">
             <span class="poster-tag">// OFERTA DE LANÇAMENTO</span>
             <div class="poster-name">Você Traz a Ideia. A Produção Acontece Aqui.</div>
-            <div class="poster-action">R$ 590,90 ou 10x R$ 79,90</div>
+            <div class="poster-target-badge">
+              <strong>🎯 Público-Alvo:</strong>
+              Confeiteiros, Lojas, Marcas, Criadores, Corretores e Profissionais da Beleza.
+            </div>
           </div>
         </div>
 
@@ -791,7 +812,10 @@
           <div class="poster-meta">
             <span class="poster-tag">// POSICIONAMENTO VISUAL</span>
             <div class="poster-name">Sua Autoridade Vale Milhões</div>
-            <div class="poster-action">Ensaio de Alta Autoridade no Ciclorama</div>
+            <div class="poster-target-badge">
+              <strong>🎯 Público-Alvo:</strong>
+              Especialistas, Cirurgiões, Empresários e Profissionais Liberais com vergonha do perfil amador.
+            </div>
           </div>
         </div>
 
@@ -803,7 +827,10 @@
           <div class="poster-meta">
             <span class="poster-tag">// CONVITE EXECUTIVO</span>
             <div class="poster-name">Conheça Seu Próximo Set de Gravação</div>
-            <div class="poster-action">Visita Técnica Cortesia com Café VIP</div>
+            <div class="poster-target-badge">
+              <strong>🎯 Público-Alvo:</strong>
+              Empresários locais de Goiânia (Park Lozandes, Jardim Goiás, Flamboyant e Alphaville).
+            </div>
           </div>
         </div>
 
@@ -814,7 +841,7 @@
     <nav class="tab-navigation">
       <button class="tab-btn active gold-tab" onclick="switchTab('tab-verba')">
         <i class="fa-solid fa-chart-line"></i>
-        <span>1. Verba Pé no Chão (R$ 10/dia)</span>
+        <span>1. Verba & Retorno (R$ 10/dia)</span>
       </button>
       <button class="tab-btn" onclick="switchTab('tab-instagram')">
         <i class="fa-brands fa-instagram"></i>
@@ -824,9 +851,9 @@
         <i class="fa-brands fa-facebook"></i>
         <span>3. Feed Facebook</span>
       </button>
-      <button class="tab-btn" onclick="switchTab('tab-parceria')">
-        <i class="fa-solid fa-handshake"></i>
-        <span>4. Parceria & Comissões (R$ 90)</span>
+      <button class="tab-btn" onclick="switchTab('tab-publicos')">
+        <i class="fa-solid fa-users"></i>
+        <span>4. Estratégia de Públicos</span>
       </button>
     </nav>
 
@@ -836,7 +863,7 @@
       <!-- Metrics Strip -->
       <div class="metrics-strip">
         <div class="metric-card highlight">
-          <span class="metric-label">Verba Inicial Sugerida</span>
+          <span class="metric-label">Verba Diária Inicial</span>
           <span class="metric-val gold" id="metricVerba">R$ 10,00 / dia</span>
           <span class="metric-sub" id="metricMes">R$ 300,00 no mês</span>
         </div>
@@ -860,22 +887,22 @@
       <!-- Simulador de Cenários -->
       <div class="scenario-picker-box">
         <h2 style="font-family: var(--font-serif); font-size: 22px; color: #fff; margin-bottom: 4px;">
-          Simulador de Investimento Direto no Botão Impulsionar
+          Simulador de Investimento no Botão Turbinar / Impulsionar
         </h2>
         <p style="font-size: 13px; color: var(--text-secondary);">
-          Simulação pensada para o modelo do Luis: postar no feed orgânico e turbinar com verba baixa direcionando pro WhatsApp:
+          Simulação direta para o modelo de postar no feed orgânico e turbinar com verba baixa direcionando pro WhatsApp:
         </p>
 
         <div class="scenario-buttons">
           <div class="scenario-btn active" id="btn-scen-a" onclick="selectScenario('A')">
-            <span class="s-tag">// Cenário 01 (O que o Luis Pediu)</span>
+            <span class="s-tag">// Cenário 01 (Validação Segura)</span>
             <div class="s-price">R$ 10 / dia</div>
-            <div class="s-desc">R$ 300 / mês • Teste seguro no WhatsApp</div>
+            <div class="s-desc">R$ 300 / mês • Teste direto para WhatsApp</div>
           </div>
           <div class="scenario-btn" id="btn-scen-b" onclick="selectScenario('B')">
             <span class="s-tag">// Cenário 02 (Ajuste Fino)</span>
             <div class="s-price">R$ 12 / dia</div>
-            <div class="s-desc">R$ 360 / mês • Maior frequência no Park Lozandes</div>
+            <div class="s-desc">R$ 360 / mês • Maior alcance no Park Lozandes</div>
           </div>
           <div class="scenario-btn" id="btn-scen-c" onclick="selectScenario('C')">
             <span class="s-tag">// Cenário 03 (Pós-Primeiras Vendas)</span>
@@ -915,7 +942,7 @@
                 <span id="scen-det-leads" style="color: #4ade80;">25 a 45 interessados</span>
               </div>
               <div class="detail-item">
-                <span>Vendas Estimadas (Taxa 10%):</span>
+                <span>Vendas Estimadas (Taxa ~10%):</span>
                 <span id="scen-det-vendas" style="color: var(--gold-light);">3 a 5 pacotes fechados</span>
               </div>
               <div class="detail-item">
@@ -923,8 +950,8 @@
                 <span id="scen-det-faturamento" style="color: var(--gold-primary); font-size: 15px;">R$ 1.772,70 a R$ 2.954,50</span>
               </div>
               <div class="detail-item">
-                <span>Comissão Mikael TM (R$ 90/venda):</span>
-                <span id="scen-det-comissao" style="color: #60a5fa;">R$ 270,00 a R$ 450,00</span>
+                <span>Retorno sobre Investimento:</span>
+                <span style="color: #4ade80; font-family: var(--font-mono); font-weight: 700;">5,9x a 9,8x do valor</span>
               </div>
             </div>
           </div>
@@ -1071,51 +1098,72 @@ R$ 590,90 à vista ou 10x R$ 79,90 sem juros
       </div>
     </div>
 
-    <!-- ==================== ABA 4: ACORDO DE PARCERIA & COMISSÕES ==================== -->
-    <div id="tab-parceria" class="tab-content">
+    <!-- ==================== ABA 4: PÚBLICOS-ALVO DETALHADOS ==================== -->
+    <div id="tab-publicos" class="tab-content">
       
-      <div class="partnership-agreement-card">
-        <h2 style="font-family: var(--font-serif); font-size: 24px; color: #fff; margin-bottom: 6px;">
-          Acordo de Parceria Comercial: Mikael TM & Luis Miguel
+      <div style="margin-bottom: 12px;">
+        <h2 style="font-family: var(--font-serif); font-size: 22px; color: #fff;">
+          Mapeamento Estratégico de Públicos por Criativo
         </h2>
-        <p style="font-size: 14px; color: var(--text-secondary); line-height: 1.6;">
-          Estrutura desenhada para validação rápida sem custo fixo para o estúdio, com ganho de escala pós-10 primeiros contratos:
+        <p style="font-size: 13px; color: var(--text-secondary);">
+          Cada anúncio foi desenhado para atingir a dor exata de um grupo de clientes em Goiânia:
         </p>
+      </div>
 
-        <div class="partner-step-row">
-          
-          <!-- Fase 1 -->
-          <div class="partner-step-box" style="border-color: var(--gold-dark);">
-            <span class="step-badge">// FASE 1: VALIDAÇÃO (10 PRIMEIROS CLIENTES)</span>
-            <div class="step-title">R$ 90,00 por Fechamento</div>
-            <div class="step-desc">
-              • <strong>Preço do Pacote:</strong> R$ 590,90 à vista.<br>
-              • <strong>Comissão Mikael TM:</strong> R$ 90,00 (15,2%).<br>
-              • <strong>Sobra Limpa para o Luis:</strong> <strong>R$ 500,90 por cliente</strong> (84,8% do faturamento).<br>
-              • <strong>Meta dos 10 Primeiros:</strong> R$ 5.909,00 faturados para a Infra X | R$ 900,00 de comissão para a TM.<br>
-              • <strong>Vantagem para o Luis:</strong> Risco zero, ele só paga após o cliente pagar o estúdio.
-            </div>
+      <div class="audiences-grid">
+        
+        <!-- Público 1 -->
+        <div class="audience-card">
+          <span class="audience-badge">// CRIATIVO 01 • SPLIT AUTORIDADE</span>
+          <div class="audience-title">Profissionais de Saúde, Especialistas & Mentores</div>
+          <div class="audience-desc">
+            <strong>Dor que pega:</strong> Sabem que a consulta ou mentoria vale caro, mas sentem que os vídeos gravados no celular com fone comum e luz de teto diminuem a percepção de alto ticket.<br>
+            <strong>A Solução:</strong> O contraste visual direto (celular amador vs. estúdio cinema Godox) quebra a objeção na hora.
           </div>
-
-          <!-- Fase 2 -->
-          <div class="partner-step-box">
-            <span class="step-badge">// FASE 2: ESCALA (PÓS-10 CLIENTES)</span>
-            <div class="step-title">Gatilho de Expansão e Ajuste</div>
-            <div class="step-desc">
-              Ao bater o 10º contrato fechado e o modelo estar validado com dinheiro no caixa, ativam-se as opções de extensão:<br>
-              • <strong>Opção A (Comissão Padrão):</strong> 15% a 20% sobre cada pacote.<br>
-              • <strong>Opção B (Fixo + Comissão):</strong> R$ 800 fixos/mês + R$ 60 por cliente.<br>
-              • <strong>Opção C (Híbrido com Permuta):</strong> R$ 90 por cliente + Direito a 2 diárias/mês de estúdio para a TM produzir seus próprios projetos.
-            </div>
+          <div class="audience-niches-pill">
+            Dentistas • Médicos • Cirurgiões • Psicólogos • Consultores • Advogados • Mentores
           </div>
-
         </div>
 
-        <div style="background: #0E131E; border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 14px; margin-top: 16px; font-size: 13px; color: var(--text-secondary); line-height: 1.5;">
-          <strong style="color: #fff;">Divisão de Tarefas:</strong><br>
-          • <strong>Mikael / TM Sempre Tecnologia:</strong> Produção dos criativos oficiais em alta resolução, estratégia de copy, parametrização dos impulsos com R$ 10/dia no Park Lozandes e direcionamento dos leads.<br>
-          • <strong>Luis Miguel / Infra X Studios:</strong> Atendimento rápido no WhatsApp (62 98245-1303), envio do Mídia Kit e fechamento da data de gravação das 3 horas no estúdio.
+        <!-- Público 2 -->
+        <div class="audience-card">
+          <span class="audience-badge">// CRIATIVO 02 • OFERTA DE LANÇAMENTO</span>
+          <div class="audience-title">Comércio, Marcas, Criadores & Serviços Locais</div>
+          <div class="audience-desc">
+            <strong>Dor que pega:</strong> Não têm tempo para ficar gravando todo dia, não sabem editar e não querem gastar fortuna contratando equipe avulsa.<br>
+            <strong>A Solução:</strong> Proposta direta e sem atrito: você traz a ideia, grava em 3 horas e sai com 10 vídeos + 20 fotos por 10x de R$ 79,90.
+          </div>
+          <div class="audience-niches-pill">
+            Lojas • Confeiteiros • Corretores de Imóveis • Arquitetos • Profissionais da Beleza • Infoprodutores
+          </div>
         </div>
+
+        <!-- Público 3 -->
+        <div class="audience-card">
+          <span class="audience-badge">// CRIATIVO 03 • POSICIONAMENTO VISUAL</span>
+          <div class="audience-title">Executivos, Especialistas & CEOs</div>
+          <div class="audience-desc">
+            <strong>Dor que pega:</strong> Sentem desconforto com a foto de perfil atual (foto cortada de casamento, selfie em elevador ou consultório escuro) que não reflete o patrimônio e a autoridade que possuem.<br>
+            <strong>A Solução:</strong> Ensaio corporativo executivo no ciclorama infinito branco com tocha Godox de alta velocidade.
+          </div>
+          <div class="audience-niches-pill">
+            Empresários • Sócios de Escritórios • Médicos Especialistas • Consultores Financeiros • Corretores de Luxo
+          </div>
+        </div>
+
+        <!-- Público 4 -->
+        <div class="audience-card">
+          <span class="audience-badge">// CRIATIVO 04 • CONVITE PRESENCIAL COM CAFÉ</span>
+          <div class="audience-title">Empresários e Criadores da Região Flamboyant / Lozandes</div>
+          <div class="audience-desc">
+            <strong>Dor que pega:</strong> Têm curiosidade sobre o estúdio, mas ficam inseguros de fechar online sem ver a estrutura física pessoalmente.<br>
+            <strong>A Solução:</strong> Convite sem compromisso para tomar um café com a direção, conhecer o set de gravação e fechar presencialmente.
+          </div>
+          <div class="audience-niches-pill">
+            Público local: Park Lozandes • Jardim Goiás • Alphaville • Setor Bueno • Marista
+          </div>
+        </div>
+
       </div>
 
     </div>
@@ -1123,7 +1171,7 @@ R$ 590,90 à vista ou 10x R$ 79,90 sem juros
   </div>
 
   <footer class="site-footer">
-    Infra X Studios IA • Park Lozandes — Goiânia/GO • Parceria Comercial TM Sempre Tecnologia © 2026
+    Infra X Studios IA • Park Lozandes — Goiânia/GO • Agendamentos: (62) 98245-1303 © 2026
   </footer>
 
   <script>
@@ -1181,7 +1229,6 @@ R$ 590,90 à vista ou 10x R$ 79,90 sem juros
         leads: '25 a 45 pessoas',
         vendas: '3 a 5 pacotes fechados',
         faturamento: 'R$ 1.772,70 a R$ 2.954,50',
-        comissao: 'R$ 270,00 a R$ 450,00',
         breakeven: 'Com o pacote a R$ 590,90, apenas 1 cliente fechado quita 100% dos R$ 300 investidos e ainda deixa R$ 290,90 de lucro imediato no caixa.'
       },
       'B': {
@@ -1190,7 +1237,6 @@ R$ 590,90 à vista ou 10x R$ 79,90 sem juros
         leads: '35 a 55 pessoas',
         vendas: '4 a 7 pacotes fechados',
         faturamento: 'R$ 2.363,60 a R$ 4.136,30',
-        comissao: 'R$ 360,00 a R$ 630,00',
         breakeven: '1 venda de R$ 590,90 cobre os R$ 360 do mês todo. A partir do segundo fechamento, é tudo lucro de caixa.'
       },
       'C': {
@@ -1199,7 +1245,6 @@ R$ 590,90 à vista ou 10x R$ 79,90 sem juros
         leads: '60 a 95 pessoas',
         vendas: '7 a 12 pacotes fechados',
         faturamento: 'R$ 4.136,30 a R$ 7.090,80',
-        comissao: 'R$ 630,00 a R$ 1.080,00',
         breakeven: '2 vendas já pagam os R$ 600 investidos. A expectativa é entregar mais de 7 pacotes fechados no mês.'
       }
     };
@@ -1220,7 +1265,6 @@ R$ 590,90 à vista ou 10x R$ 79,90 sem juros
       document.getElementById('scen-det-leads').textContent = data.leads;
       document.getElementById('scen-det-vendas').textContent = data.vendas;
       document.getElementById('scen-det-faturamento').textContent = data.faturamento;
-      document.getElementById('scen-det-comissao').textContent = data.comissao;
       document.getElementById('scen-det-breakeven').textContent = data.breakeven;
     }
   </script>
